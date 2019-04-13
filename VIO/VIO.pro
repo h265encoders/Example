@@ -7,7 +7,7 @@ CONFIG -= app_bundle
 
 TEMPLATE = app
 
-chip = HI3531A
+chip = HI3531D
 include(/home/linkpi/work/LinkLib/Link.pri)
 
 SOURCES += main.cpp
