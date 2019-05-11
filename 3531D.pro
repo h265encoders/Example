@@ -1,4 +1,15 @@
 TEMPLATE = subdirs
 
+
+
 SUBDIRS += \
-    VIO
+    VIO \
+    AIO \
+    Stream \
+    Record \
+    Decode \
+    GPIO \
+    Snap \
+    USBCam \
+    Mix \
+    UI

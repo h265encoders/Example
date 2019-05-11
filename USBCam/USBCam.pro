@@ -1,7 +1,7 @@
 QT += core
 QT -= gui
 
-TARGET = VIO
+TARGET = USBCam
 CONFIG += console
 CONFIG -= app_bundle
 

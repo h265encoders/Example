@@ -1,23 +1,22 @@
-#include <QCoreApplication>
+#include "widget.h"
+#include <QApplication>
 #include "Link.h"
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication a(argc, argv);
-
     Link::init();
-
-    LinkObject *vi=Link::create("InputVi");
-    QVariantMap dataVi;
-    dataVi["interface"]="HDMI-A";
-    vi->start(dataVi);
 
     LinkObject *vo=Link::create("OutputVo");
     QVariantMap dataVo;
     dataVo["type"]="hdmi";
     vo->start(dataVo);
 
-    vi->linkV(vo);
+    QApplication a(argc, argv);
+
+    Widget w;
+    w.vo=vo;
+    w.init();
+    w.show();
 
     return a.exec();
 }

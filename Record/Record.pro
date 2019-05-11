@@ -1,7 +1,7 @@
 QT += core
 QT -= gui
 
-TARGET = VIO
+TARGET = Record
 CONFIG += console
 CONFIG -= app_bundle
 
