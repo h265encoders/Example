@@ -12,4 +12,6 @@ SUBDIRS += \
     Snap \
     USBCam \
     Mix \
-    UI
+    UI \
+    DIY \
+    Overlay

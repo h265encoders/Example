@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 
     vi->linkV(encv);
 
-    sleep(1);
+    sleep(2);
 
     encv->invoke("snapSync","test.jpg");
 

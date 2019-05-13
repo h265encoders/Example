@@ -1,6 +1,7 @@
 #include "widget.h"
 #include <QApplication>
 #include "Link.h"
+#include <unistd.h>
 
 int main(int argc, char *argv[])
 {
@@ -10,7 +11,7 @@ int main(int argc, char *argv[])
     QVariantMap dataVo;
     dataVo["type"]="hdmi";
     vo->start(dataVo);
-
+    sleep(3);
     QApplication a(argc, argv);
 
     Widget w;
