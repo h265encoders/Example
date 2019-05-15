@@ -11,8 +11,12 @@ chip = HI3531D
 include(/home/linkpi/work/LinkLib/Link.pri)
 DESTDIR +=../bin
 SOURCES += main.cpp \
-    Bypass.cpp
+    Bypass.cpp \
+    Sink.cpp \
+    Source.cpp
 
 HEADERS += \
-    Bypass.h
+    Bypass.h \
+    Sink.h \
+    Source.h
 

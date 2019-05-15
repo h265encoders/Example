@@ -1,6 +1,8 @@
 #include <QCoreApplication>
 #include "Link.h"
 #include "Bypass.h"
+#include "Source.h"
+#include "Sink.h"
 
 int main(int argc, char *argv[])
 {
@@ -47,6 +49,25 @@ int main(int argc, char *argv[])
 
     ai->linkA(encA)->linkA(bypass)->linkA(rtsp)->linkA(rtspServer);
     vi->linkV(encV)->linkV(bypass)->linkV(rtsp)->linkV(rtspServer);
+
+    LinkObject *sink=new Sink();
+    QVariantMap dataSink;
+    dataSink["ip"]="127.0.0.1";
+    sink->start(dataSink);
+
+    LinkObject *source=new Source();
+    source->start();
+
+    LinkObject *decV=Link::create("DecodeV");
+    decV->start();
+
+    LinkObject *vo=Link::create("OutputVo");
+    QVariantMap dataVo;
+    dataVo["type"]="hdmi";
+    vo->start(dataVo);
+
+    encV->linkV(sink);
+    source->linkV(decV)->linkV(vo);
 
 
     return a.exec();
