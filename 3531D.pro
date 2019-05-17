@@ -14,4 +14,5 @@ SUBDIRS += \
     Mix \
     UI \
     DIY \
-    Overlay
+    Overlay \
+    OLED
