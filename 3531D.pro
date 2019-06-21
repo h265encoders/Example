@@ -15,4 +15,5 @@ SUBDIRS += \
     UI \
     DIY \
     Overlay \
-    OLED
+    OLED \
+    UI_Web
