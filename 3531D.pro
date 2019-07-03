@@ -16,4 +16,5 @@ SUBDIRS += \
     DIY \
     Overlay \
     OLED \
-    UI_Web
+    UI_Web \
+    PowerCtrl
