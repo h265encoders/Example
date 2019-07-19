@@ -17,4 +17,6 @@ SUBDIRS += \
     Overlay \
     OLED \
     UI_Web \
-    PowerCtrl
+    PowerCtrl \
+    LowLatencyENC \
+    LowLatencyDEC
