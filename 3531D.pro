@@ -23,4 +23,5 @@ SUBDIRS += \
     LowLatencyENC \
     LowLatencyDEC \
     FileTranscode \
-    StreamTranscode
+    StreamTranscode \
+    Player
