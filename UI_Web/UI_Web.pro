@@ -4,10 +4,8 @@ TARGET = UI_Web
 
 TEMPLATE = app
 
-chip = HI3531D
-include(/home/linkpi/work/LinkLib/Link.pri)
+include(../build.pri)
 LIBS+=-L $$CROSS/icu/lib -licudata -licui18n -licuuc
-DESTDIR +=../bin
 
 SOURCES += main.cpp
 

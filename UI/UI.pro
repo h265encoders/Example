@@ -11,9 +11,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = UI
 TEMPLATE = app
 
-chip = HI3531D
-include(/home/linkpi/work/LinkLib/Link.pri)
-DESTDIR +=../bin
+include(../build.pri)
 
 SOURCES += main.cpp\
         widget.cpp

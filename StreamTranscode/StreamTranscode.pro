@@ -1,8 +1,8 @@
 QT += core
 QT -= gui
 
-TARGET = GPIO
-CONFIG += console c++11
+TARGET = StreamTranscode
+CONFIG += console
 CONFIG -= app_bundle
 
 TEMPLATE = app

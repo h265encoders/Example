@@ -1,6 +1,8 @@
 TEMPLATE = subdirs
 
 
+DISTFILES += \
+    build.pri
 
 SUBDIRS += \
     VIO \
@@ -19,4 +21,6 @@ SUBDIRS += \
     UI_Web \
     PowerCtrl \
     LowLatencyENC \
-    LowLatencyDEC
+    LowLatencyDEC \
+    FileTranscode \
+    StreamTranscode
