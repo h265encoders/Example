@@ -1,9 +1,9 @@
 #include <QCoreApplication>
 #include "Link.h"
 
-#define RTSP
+//#define RTSP
 //#define UDP
-//#define RTMP
+#define RTMP
 
 int main(int argc, char *argv[])
 {
@@ -39,10 +39,10 @@ int main(int argc, char *argv[])
 #ifdef RTSP
     dataRtsp["path"]="mem://test";
     dataRtsp["format"]="rtsp";
-#elif UDP
+#elif defined UDP
     dataRtsp["path"]="mem://test";
     dataRtsp["format"]="mpegts";
-#elif RTMP
+#elif defined RTMP
     dataRtsp["path"]="rtmp://127.0.0.1/live/test";
     dataRtsp["format"]="flv";
 #endif
@@ -55,14 +55,14 @@ int main(int argc, char *argv[])
     LinkObject *rtspServer=Link::create("Rtsp");
     rtspServer->start();
     vi->linkV(encV)->linkV(mux)->linkV(rtspServer);
-#elif UDP
+#elif defined UDP
     LinkObject *udp=Link::create("TSUdp");
     QVariantMap dataUDP;
     dataUDP["ip"]="192.168.1.77";
     dataUDP["port"]=1234;
     udp->start(dataUDP);
     vi->linkV(encV)->linkV(mux)->linkV(udp);
-#elif RTMP
+#elif defined RTMP
     vi->linkV(encV)->linkV(mux);
 #endif
 

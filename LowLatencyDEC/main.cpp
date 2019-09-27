@@ -1,9 +1,9 @@
 #include <QCoreApplication>
 #include "Link.h"
 
-#define RTSP
+//#define RTSP
 //#define UDP
-//#define RTMP
+#define RTMP
 
 int main(int argc, char *argv[])
 {
@@ -18,9 +18,9 @@ int main(int argc, char *argv[])
     QVariantMap dataNet;
 #ifdef RTSP
     dataNet["path"]="rtsp://192.168.1.76/test";
-#elif UDP
+#elif defined UDP
     dataNet["path"]="udp://@:1234";
-#elif RTMP
+#elif defined RTMP
     dataNet["path"]="rtmp://192.168.1.76/live/test";
 #endif
     dataNet["protocol"]="udp";
