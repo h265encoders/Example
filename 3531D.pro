@@ -25,4 +25,5 @@ SUBDIRS += \
     FileTranscode \
     StreamTranscode \
     Player \
-    AEC
+    AEC \
+    RecordSegment
