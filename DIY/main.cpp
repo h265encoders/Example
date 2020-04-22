@@ -3,6 +3,7 @@
 #include "Bypass.h"
 #include "Source.h"
 #include "Sink.h"
+#include "../VIO/interface.h"
 
 int main(int argc, char *argv[])
 {
@@ -11,12 +12,12 @@ int main(int argc, char *argv[])
 
     LinkObject *ai=Link::create("InputAi");
     QVariantMap dataAi;
-    dataAi["interface"]="HDMI-A";
+    dataAi["interface"]=INTERFACE_AUDIO;
     ai->start(dataAi);
 
     LinkObject *vi=Link::create("InputVi");
     QVariantMap dataVi;
-    dataVi["interface"]="HDMI-A";
+    dataVi["interface"]=INTERFACE_VIDEO;
     vi->start(dataVi);
 
     LinkObject *encA=Link::create("EncodeA");

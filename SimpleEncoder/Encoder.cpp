@@ -1,30 +1,31 @@
-#include <QCoreApplication>
-#include "Link.h"
+#include "Encoder.h"
 #include "../VIO/interface.h"
 
-int main(int argc, char *argv[])
+Encoder::Encoder(QObject *parent) : QObject(parent)
 {
-    QCoreApplication a(argc, argv);
-    Link::init();
 
-    LinkObject *ai=Link::create("InputAi");
+}
+
+void Encoder::init()
+{
+    ai=Link::create("InputAi");
     QVariantMap dataAi;
     dataAi["interface"]=INTERFACE_AUDIO;
     ai->start(dataAi);
 
-    LinkObject *vi=Link::create("InputVi");
+    vi=Link::create("InputVi");
     QVariantMap dataVi;
     dataVi["interface"]=INTERFACE_VIDEO;
     vi->start(dataVi);
 
-    LinkObject *encA=Link::create("EncodeA");
+    encA=Link::create("EncodeA");
     QVariantMap dataEncA;
     dataEncA["codec"]="aac";
     dataEncA["samplerate"]=48000;
     dataEncA["bitrate"]=128;
     encA->start(dataEncA);
 
-    LinkObject *encV=Link::create("EncodeV");
+    encV=Link::create("EncodeV");
     QVariantMap dataEncV;
     dataEncV["codec"]="h264";
     dataEncV["width"]=1920;
@@ -32,7 +33,7 @@ int main(int argc, char *argv[])
     dataEncV["bitrate"]=4000;
     encV->start(dataEncV);
 
-    LinkObject *rtmp=Link::create("Mux");
+    rtmp=Link::create("Mux");
     QVariantMap dataRtmp;
     dataRtmp["path"]="rtmp://127.0.0.1/live/test";
     rtmp->start(dataRtmp);
@@ -40,10 +41,10 @@ int main(int argc, char *argv[])
     ai->linkA(encA)->linkA(rtmp);
     vi->linkV(encV)->linkV(rtmp);
 
-    LinkObject *rtspServer=Link::create("Rtsp");
+    rtspServer=Link::create("Rtsp");
     rtspServer->start();
 
-    LinkObject *rtsp=Link::create("Mux");
+    rtsp=Link::create("Mux");
     QVariantMap dataRtsp;
     dataRtsp["path"]="mem://test";
     dataRtsp["format"]="rtsp";
@@ -52,6 +53,22 @@ int main(int argc, char *argv[])
     encA->linkA(rtsp)->linkA(rtspServer);
     encV->linkV(rtsp)->linkV(rtspServer);
 
-    return a.exec();
+
+    rpcServer=new jcon::JsonRpcTcpServer();
+    QObjectList objs;
+    objs<<this;
+    rpcServer->registerServices(objs);
+    rpcServer->listen(6001);
+}
+
+QVariantMap Encoder::getInputState()
+{
+    return vi->invoke("getReport").toMap();
+}
+
+bool Encoder::setConfig(QVariantMap data)
+{
+    encV->setData(data);
+    return true;
 }
 

@@ -1,6 +1,6 @@
 #include <QCoreApplication>
 #include "Link.h"
-#include "interface.h"
+#include "../VIO/interface.h"
 
 int main(int argc, char *argv[])
 {
@@ -13,12 +13,21 @@ int main(int argc, char *argv[])
     dataVi["interface"]=INTERFACE_VIDEO;
     vi->start(dataVi);
 
+    LinkObject *crop=Link::create("Crop");
+    QVariantMap dataCrop;
+    dataCrop["x"]=0.2;
+    dataCrop["y"]=0.2;
+    dataCrop["width"]=0.5;
+    dataCrop["height"]=0.5;
+    crop->start(dataCrop);
+
     LinkObject *vo=Link::create("OutputVo");
     QVariantMap dataVo;
     dataVo["type"]="hdmi";
     vo->start(dataVo);
 
-    vi->linkV(vo);
+    vi->linkV(crop)->linkV(vo);
 
     return a.exec();
 }
+

@@ -1,0 +1,36 @@
+<html>
+<body>
+InputState:<span id="state"></span><br />
+width:<input type="text" id="width" value="1920" /><br />
+height:<input type="text" id="height" value="1080" /><br />
+bitrate:<input type="text" id="bitrate" value="4000" /><br />
+<button id="save">保存</button>
+<script src="/js/jquery-1.11.3.min.js"></script>
+<script src="/js/jquery.jsonrpcclient.js"></script>
+<script>
+    var jsonrpc = new $.JsonRpcClient({ ajaxUrl: 'http://'+window.location.host+'/RPC' });
+
+    $("#save").click( function ( e ) {
+        var data={};
+        data.width=$("#width").val();
+        data.height=$("#height").val();
+        data.bitrate=$("#bitrate").val();
+        jsonrpc.call("setConfig", [data], function(data){
+            console.log(data);
+        });
+    });
+
+    function getState()
+    {
+        jsonrpc.call("getInputState", [], function(data){
+            if(data.avalible)
+                $("#state").text(data.width+"x"+data.height+"@"+data.framerate);
+            else
+                $("#state").text("no signal");
+        });
+    }
+
+    setInterval(getState,2000);
+</script>
+</body>
+</html>

@@ -1,5 +1,6 @@
 #include "widget.h"
 #include "ui_widget.h"
+#include "../VIO/interface.h"
 
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
@@ -21,22 +22,22 @@ void Widget::init()
 {
     ai_1=Link::create("InputAi");
     QVariantMap dataAi_1;
-    dataAi_1["interface"]="HDMI-A";
+    dataAi_1["interface"]=INTERFACE_AUDIO;
     ai_1->start(dataAi_1);
 
     ai_2=Link::create("InputAi");
     QVariantMap dataAi_2;
-    dataAi_2["interface"]="HDMI-B";
+    dataAi_2["interface"]=INTERFACE_AUDIO2;
     ai_2->start(dataAi_2);
 
     vi_1=Link::create("InputVi");
     QVariantMap dataVi_1;
-    dataVi_1["interface"]="HDMI-A";
+    dataVi_1["interface"]=INTERFACE_VIDEO;
     vi_1->start(dataVi_1);
 
     vi_2=Link::create("InputVi");
     QVariantMap dataVi_2;
-    dataVi_2["interface"]="HDMI-B";
+    dataVi_2["interface"]=INTERFACE_VIDEO2;
     vi_2->start(dataVi_2);
 
     mixA=Link::create("MixA");

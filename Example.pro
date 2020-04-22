@@ -26,4 +26,6 @@ SUBDIRS += \
     StreamTranscode \
     Player \
     AEC \
-    RecordSegment
+    RecordSegment \
+    Crop \
+    SimpleEncoder

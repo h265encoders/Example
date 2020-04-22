@@ -1,5 +1,6 @@
 #include <QCoreApplication>
 #include "Link.h"
+#include "../VIO/interface.h"
 
 int main(int argc, char *argv[])
 {
@@ -9,7 +10,7 @@ int main(int argc, char *argv[])
 
     LinkObject *ai=Link::create("InputAi");
     QVariantMap dataAi;
-    dataAi["interface"]="HDMI-A";
+    dataAi["interface"]=INTERFACE_AUDIO;
     ai->start(dataAi);
 
     LinkObject *ao=Link::create("OutputAo");

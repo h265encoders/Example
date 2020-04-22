@@ -1,6 +1,6 @@
-chip = HI3531D
+chip = HI3521D
 include(../LinkLib/Link.pri)
-DESTDIR +=../bin
+DESTDIR +=../bin/$$chip/
 
 MOC_DIR = Temp/$$chip
 OBJECTS_DIR  = Temp/$$chip

@@ -1,5 +1,6 @@
 #include <QCoreApplication>
 #include "Link.h"
+#include "../VIO/interface.h"
 
 //#define RTSP
 //#define UDP
@@ -13,7 +14,7 @@ int main(int argc, char *argv[])
 
     LinkObject *vi=Link::create("InputVi");
     QVariantMap dataVi;
-    dataVi["interface"]="HDMI-A";
+    dataVi["interface"]=INTERFACE_VIDEO;
     vi->start(dataVi);
 
     LinkObject *vo=Link::create("OutputVo");
