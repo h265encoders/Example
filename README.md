@@ -5,6 +5,7 @@
 
 详情请访问[【wiki页面】](https://gitee.com/LinkPi/Example/wikis/pages)
 
+---
 **相关目录:**  
 编码器源码： https://gitee.com/LinkPi/Encoder  
 编码器使用说明书: https://gitee.com/LinkPi/Encoder/wikis/pages  
